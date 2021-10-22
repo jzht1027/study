@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.api.modules.dao.edsCounterPartyMapper">
+  <resultMap id="BaseResultMap" type="com.api.modules.model.edsCounterParty">
+    <id column="COUNTERPARTYID" jdbcType="VARCHAR" property="counterpartyid" />
+    <result column="CREATEUSERID" jdbcType="VARCHAR" property="createuserid" />
+    <result column="UPDATEUSERID" jdbcType="VARCHAR" property="updateuserid" />
+    <result column="CREATETIME" jdbcType="DECIMAL" property="createtime" />
+    <result column="UPDATETIME" jdbcType="DECIMAL" property="updatetime" />
+    <result column="STATUS" jdbcType="VARCHAR" property="status" />
+    <result column="COUNTERPARTYAPPLYID" jdbcType="VARCHAR" property="counterpartyapplyid" />
+    <result column="FULLNAME" jdbcType="VARCHAR" property="fullname" />
+    <result column="NAME" jdbcType="VARCHAR" property="name" />
+    <result column="COUNTERPARTYTYPE" jdbcType="VARCHAR" property="counterpartytype" />
+    <result column="COUNTERPARTYRISKTOLERANCE" jdbcType="VARCHAR" property="counterpartyrisktolerance" />
+    <result column="COUNTERPARTYGROUPID" jdbcType="VARCHAR" property="counterpartygroupid" />
+    <result column="MEMO" jdbcType="VARCHAR" property="memo" />
+    <result column="MASTERAGREEMENTCODELIST" jdbcType="VARCHAR" property="masteragreementcodelist" />
+    <result column="RMAPPROVELEVELID" jdbcType="VARCHAR" property="rmapprovelevelid" />
+    <result column="ESTABLISHDATE" jdbcType="DECIMAL" property="establishdate" />
+    <result column="SALELIST" jdbcType="VARCHAR" property="salelist" />
+    <result column="DIRECTSALELIST" jdbcType="VARCHAR" property="directsalelist" />
+    <result column="DIRECTSALEDEPARTMENT" jdbcType="VARCHAR" property="directsaledepartment" />
+    <result column="RDSSYMBOL" jdbcType="VARCHAR" property="rdssymbol" />
+    <result column="AGREEMENTDATE" jdbcType="DECIMAL" property="agreementdate" />
+    <result column="ISINNER" jdbcType="VARCHAR" property="isinner" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    COUNTERPARTYID, CREATEUSERID, UPDATEUSERID, CREATETIME, UPDATETIME, STATUS, COUNTERPARTYAPPLYID, 
+    FULLNAME, NAME, COUNTERPARTYTYPE, COUNTERPARTYRISKTOLERANCE, COUNTERPARTYGROUPID, 
+    MEMO, MASTERAGREEMENTCODELIST, RMAPPROVELEVELID, ESTABLISHDATE, SALELIST, DIRECTSALELIST, 
+    DIRECTSALEDEPARTMENT, RDSSYMBOL, AGREEMENTDATE, ISINNER
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from EDS_COUNTERPARTY
+    where COUNTERPARTYID = #{counterpartyid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from EDS_COUNTERPARTY
+    where COUNTERPARTYID = #{counterpartyid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.api.modules.model.edsCounterParty">
+    insert into EDS_COUNTERPARTY (COUNTERPARTYID, CREATEUSERID, UPDATEUSERID, 
+      CREATETIME, UPDATETIME, STATUS, 
+      COUNTERPARTYAPPLYID, FULLNAME, NAME, 
+      COUNTERPARTYTYPE, COUNTERPARTYRISKTOLERANCE, 
+      COUNTERPARTYGROUPID, MEMO, MASTERAGREEMENTCODELIST, 
+      RMAPPROVELEVELID, ESTABLISHDATE, SALELIST, 
+      DIRECTSALELIST, DIRECTSALEDEPARTMENT, RDSSYMBOL, 
+      AGREEMENTDATE, ISINNER)
+    values (#{counterpartyid,jdbcType=VARCHAR}, #{createuserid,jdbcType=VARCHAR}, #{updateuserid,jdbcType=VARCHAR}, 
+      #{createtime,jdbcType=DECIMAL}, #{updatetime,jdbcType=DECIMAL}, #{status,jdbcType=VARCHAR}, 
+      #{counterpartyapplyid,jdbcType=VARCHAR}, #{fullname,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{counterpartytype,jdbcType=VARCHAR}, #{counterpartyrisktolerance,jdbcType=VARCHAR}, 
+      #{counterpartygroupid,jdbcType=VARCHAR}, #{memo,jdbcType=VARCHAR}, #{masteragreementcodelist,jdbcType=VARCHAR}, 
+      #{rmapprovelevelid,jdbcType=VARCHAR}, #{establishdate,jdbcType=DECIMAL}, #{salelist,jdbcType=VARCHAR}, 
+      #{directsalelist,jdbcType=VARCHAR}, #{directsaledepartment,jdbcType=VARCHAR}, #{rdssymbol,jdbcType=VARCHAR}, 
+      #{agreementdate,jdbcType=DECIMAL}, #{isinner,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.api.modules.model.edsCounterParty">
+    insert into EDS_COUNTERPARTY
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="counterpartyid != null">
+        COUNTERPARTYID,
+      </if>
+      <if test="createuserid != null">
+        CREATEUSERID,
+      </if>
+      <if test="updateuserid != null">
+        UPDATEUSERID,
+      </if>
+      <if test="createtime != null">
+        CREATETIME,
+      </if>
+      <if test="updatetime != null">
+        UPDATETIME,
+      </if>
+      <if test="status != null">
+        STATUS,
+      </if>
+      <if test="counterpartyapplyid != null">
+        COUNTERPARTYAPPLYID,
+      </if>
+      <if test="fullname != null">
+        FULLNAME,
+      </if>
+      <if test="name != null">
+        NAME,
+      </if>
+      <if test="counterpartytype != null">
+        COUNTERPARTYTYPE,
+      </if>
+      <if test="counterpartyrisktolerance != null">
+        COUNTERPARTYRISKTOLERANCE,
+      </if>
+      <if test="counterpartygroupid != null">
+        COUNTERPARTYGROUPID,
+      </if>
+      <if test="memo != null">
+        MEMO,
+      </if>
+      <if test="masteragreementcodelist != null">
+        MASTERAGREEMENTCODELIST,
+      </if>
+      <if test="rmapprovelevelid != null">
+        RMAPPROVELEVELID,
+      </if>
+      <if test="establishdate != null">
+        ESTABLISHDATE,
+      </if>
+      <if test="salelist != null">
+        SALELIST,
+      </if>
+      <if test="directsalelist != null">
+        DIRECTSALELIST,
+      </if>
+      <if test="directsaledepartment != null">
+        DIRECTSALEDEPARTMENT,
+      </if>
+      <if test="rdssymbol != null">
+        RDSSYMBOL,
+      </if>
+      <if test="agreementdate != null">
+        AGREEMENTDATE,
+      </if>
+      <if test="isinner != null">
+        ISINNER,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="counterpartyid != null">
+        #{counterpartyid,jdbcType=VARCHAR},
+      </if>
+      <if test="createuserid != null">
+        #{createuserid,jdbcType=VARCHAR},
+      </if>
+      <if test="updateuserid != null">
+        #{updateuserid,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=DECIMAL},
+      </if>
+      <if test="updatetime != null">
+        #{updatetime,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="counterpartyapplyid != null">
+        #{counterpartyapplyid,jdbcType=VARCHAR},
+      </if>
+      <if test="fullname != null">
+        #{fullname,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="counterpartytype != null">
+        #{counterpartytype,jdbcType=VARCHAR},
+      </if>
+      <if test="counterpartyrisktolerance != null">
+        #{counterpartyrisktolerance,jdbcType=VARCHAR},
+      </if>
+      <if test="counterpartygroupid != null">
+        #{counterpartygroupid,jdbcType=VARCHAR},
+      </if>
+      <if test="memo != null">
+        #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="masteragreementcodelist != null">
+        #{masteragreementcodelist,jdbcType=VARCHAR},
+      </if>
+      <if test="rmapprovelevelid != null">
+        #{rmapprovelevelid,jdbcType=VARCHAR},
+      </if>
+      <if test="establishdate != null">
+        #{establishdate,jdbcType=DECIMAL},
+      </if>
+      <if test="salelist != null">
+        #{salelist,jdbcType=VARCHAR},
+      </if>
+      <if test="directsalelist != null">
+        #{directsalelist,jdbcType=VARCHAR},
+      </if>
+      <if test="directsaledepartment != null">
+        #{directsaledepartment,jdbcType=VARCHAR},
+      </if>
+      <if test="rdssymbol != null">
+        #{rdssymbol,jdbcType=VARCHAR},
+      </if>
+      <if test="agreementdate != null">
+        #{agreementdate,jdbcType=DECIMAL},
+      </if>
+      <if test="isinner != null">
+        #{isinner,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.api.modules.model.edsCounterParty">
+    update EDS_COUNTERPARTY
+    <set>
+      <if test="createuserid != null">
+        CREATEUSERID = #{createuserid,jdbcType=VARCHAR},
+      </if>
+      <if test="updateuserid != null">
+        UPDATEUSERID = #{updateuserid,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        CREATETIME = #{createtime,jdbcType=DECIMAL},
+      </if>
+      <if test="updatetime != null">
+        UPDATETIME = #{updatetime,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null">
+        STATUS = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="counterpartyapplyid != null">
+        COUNTERPARTYAPPLYID = #{counterpartyapplyid,jdbcType=VARCHAR},
+      </if>
+      <if test="fullname != null">
+        FULLNAME = #{fullname,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="counterpartytype != null">
+        COUNTERPARTYTYPE = #{counterpartytype,jdbcType=VARCHAR},
+      </if>
+      <if test="counterpartyrisktolerance != null">
+        COUNTERPARTYRISKTOLERANCE = #{counterpartyrisktolerance,jdbcType=VARCHAR},
+      </if>
+      <if test="counterpartygroupid != null">
+        COUNTERPARTYGROUPID = #{counterpartygroupid,jdbcType=VARCHAR},
+      </if>
+      <if test="memo != null">
+        MEMO = #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="masteragreementcodelist != null">
+        MASTERAGREEMENTCODELIST = #{masteragreementcodelist,jdbcType=VARCHAR},
+      </if>
+      <if test="rmapprovelevelid != null">
+        RMAPPROVELEVELID = #{rmapprovelevelid,jdbcType=VARCHAR},
+      </if>
+      <if test="establishdate != null">
+        ESTABLISHDATE = #{establishdate,jdbcType=DECIMAL},
+      </if>
+      <if test="salelist != null">
+        SALELIST = #{salelist,jdbcType=VARCHAR},
+      </if>
+      <if test="directsalelist != null">
+        DIRECTSALELIST = #{directsalelist,jdbcType=VARCHAR},
+      </if>
+      <if test="directsaledepartment != null">
+        DIRECTSALEDEPARTMENT = #{directsaledepartment,jdbcType=VARCHAR},
+      </if>
+      <if test="rdssymbol != null">
+        RDSSYMBOL = #{rdssymbol,jdbcType=VARCHAR},
+      </if>
+      <if test="agreementdate != null">
+        AGREEMENTDATE = #{agreementdate,jdbcType=DECIMAL},
+      </if>
+      <if test="isinner != null">
+        ISINNER = #{isinner,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where COUNTERPARTYID = #{counterpartyid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.api.modules.model.edsCounterParty">
+    update EDS_COUNTERPARTY
+    set CREATEUSERID = #{createuserid,jdbcType=VARCHAR},
+      UPDATEUSERID = #{updateuserid,jdbcType=VARCHAR},
+      CREATETIME = #{createtime,jdbcType=DECIMAL},
+      UPDATETIME = #{updatetime,jdbcType=DECIMAL},
+      STATUS = #{status,jdbcType=VARCHAR},
+      COUNTERPARTYAPPLYID = #{counterpartyapplyid,jdbcType=VARCHAR},
+      FULLNAME = #{fullname,jdbcType=VARCHAR},
+      NAME = #{name,jdbcType=VARCHAR},
+      COUNTERPARTYTYPE = #{counterpartytype,jdbcType=VARCHAR},
+      COUNTERPARTYRISKTOLERANCE = #{counterpartyrisktolerance,jdbcType=VARCHAR},
+      COUNTERPARTYGROUPID = #{counterpartygroupid,jdbcType=VARCHAR},
+      MEMO = #{memo,jdbcType=VARCHAR},
+      MASTERAGREEMENTCODELIST = #{masteragreementcodelist,jdbcType=VARCHAR},
+      RMAPPROVELEVELID = #{rmapprovelevelid,jdbcType=VARCHAR},
+      ESTABLISHDATE = #{establishdate,jdbcType=DECIMAL},
+      SALELIST = #{salelist,jdbcType=VARCHAR},
+      DIRECTSALELIST = #{directsalelist,jdbcType=VARCHAR},
+      DIRECTSALEDEPARTMENT = #{directsaledepartment,jdbcType=VARCHAR},
+      RDSSYMBOL = #{rdssymbol,jdbcType=VARCHAR},
+      AGREEMENTDATE = #{agreementdate,jdbcType=DECIMAL},
+      ISINNER = #{isinner,jdbcType=VARCHAR}
+    where COUNTERPARTYID = #{counterpartyid,jdbcType=VARCHAR}
+  </update>
+</mapper>

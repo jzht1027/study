@@ -1,0 +1,27 @@
+{
+  "groups": [
+    {
+      "name": "spark",
+      "type": "com.spark.context.SparkContextBean",
+      "sourceType": "com.spark.context.SparkContextBean"
+    }
+  ],
+  "properties": [
+    {
+      "name": "spark.app-name",
+      "type": "java.lang.String",
+      "sourceType": "com.spark.context.SparkContextBean"
+    },
+    {
+      "name": "spark.master",
+      "type": "java.lang.String",
+      "sourceType": "com.spark.context.SparkContextBean"
+    },
+    {
+      "name": "spark.spark-home",
+      "type": "java.lang.String",
+      "sourceType": "com.spark.context.SparkContextBean"
+    }
+  ],
+  "hints": []
+}

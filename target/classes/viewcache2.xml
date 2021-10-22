@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<viewcache>
+    <areas>
+        <area id="1098" parentId="1001" areaType="province" name="上海" ordering="1867" phoneArea="111"/>
+        <area id="1099" parentId="1098" areaType="capital" name="北京" ordering="1868" phoneArea="010"/>
+    </areas>
+</viewcache>

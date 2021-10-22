@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<student name="llin" age="16" grade="3">
+    <subject name="math" teacher="yu" />
+    <subject name="afsd" teacher="sdf" />
+</student>
