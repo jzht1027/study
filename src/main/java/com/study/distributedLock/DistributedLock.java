@@ -1,8 +1,9 @@
 package com.study.distributedLock;
 
-import org.redisson.Redisson;
+import com.api.common.util.RedisService;
 import org.redisson.api.RLock;
 import org.redisson.api.RReadWriteLock;
+import org.redisson.api.RedissonClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,18 +27,23 @@ import java.util.concurrent.TimeUnit;
 public class DistributedLock {
 
     @Autowired
-    private Redisson redisson;
-
+    private RedissonClient redissonClient;
+    
     @Autowired
     private StringRedisTemplate stringRedisTemplate;
 
+    @Autowired
+    private RedisService redisService;
+
     @RequestMapping("/lock")
     public String deductStock1(){
-        int stock = Integer.parseInt(stringRedisTemplate.opsForValue().get("stock"));
+//        int stock = Integer.parseInt(stringRedisTemplate.opsForValue().get("stock"));
+        int stock = Integer.parseInt(redisService.get("stock"));
         System.out.println("stock:"+stock);
         if(stock>0){
             int realStock = stock -1;
-            stringRedisTemplate.opsForValue().set("stock",realStock + "");
+//            stringRedisTemplate.opsForValue().set("stock",realStock + "");
+            redisService.set("stock",realStock + "");
             System.out.println("扣减库存为："+realStock);
         }else{
             System.out.println("库存不足");
@@ -75,7 +81,6 @@ public class DistributedLock {
 
             //遵从原子性，防止set成功，还未加超时时间宕机；
             Boolean result = stringRedisTemplate.opsForValue().setIfAbsent(lockkey,uuid,10, TimeUnit.SECONDS);
-
             if(!result){
                 return "false";
             }
@@ -83,7 +88,8 @@ public class DistributedLock {
             int stock = Integer.parseInt(stringRedisTemplate.opsForValue().get("stock"));
             if(stock>0){
                 int realStock = stock -1;
-                stringRedisTemplate.opsForValue().set("stock",realStock + "");
+//                stringRedisTemplate.opsForValue().set("stock",realStock + "");
+                redisService.set("stock",realStock + "");
                 System.out.println("扣减库存为："+realStock);
             }else{
                 System.out.println("库存不足");
@@ -105,10 +111,10 @@ public class DistributedLock {
         String lockkey = "lockkey";
         SimpleDateFormat n = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         System.out.println(n.format(new Date()));
-        RLock lock = redisson.getLock(lockkey);
+        RLock lock = redissonClient.getLock(lockkey);
         try {
             //默认是30s,若加锁成功，redisson会另起线程，每十秒去判断锁是否存在，若存在则延长锁的时间30s;
-            lock.lock();
+//            lock.lock();
             //设置为60s 后自动释放锁
 //            lock.lock(60, TimeUnit.SECONDS);
 
@@ -118,7 +124,7 @@ public class DistributedLock {
 //            sleep(60000);
 //            System.out.println(n.format(new Date()));
 
-            while (flag){
+            if (flag){
                 int stock = Integer.parseInt(stringRedisTemplate.opsForValue().get("stock"));
                 if(stock>0){
                     int realStock = stock -1;
@@ -148,7 +154,7 @@ public class DistributedLock {
         String lockkey = "read_write_lockkey";
         SimpleDateFormat n = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
-        RReadWriteLock rReadWriteLock = redisson.getReadWriteLock(lockkey);
+        RReadWriteLock rReadWriteLock = redissonClient.getReadWriteLock(lockkey);
         //写锁
         RLock read = rReadWriteLock.readLock();
         //读锁
@@ -160,6 +166,7 @@ public class DistributedLock {
                     System.out.println("=============封装处理读业务逻辑=============");
                     read.lock();
                     int readStock = Integer.parseInt(stringRedisTemplate.opsForValue().get("stock"));
+                    System.out.println("库存为："+readStock);
                     break;
                 case "write":
                     System.out.println("=============封装处理写业务逻辑=============");

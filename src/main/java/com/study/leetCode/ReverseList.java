@@ -1,7 +1,8 @@
 package com.study.leetCode;
 
-import lombok.val;
-
+/**
+ * 链表反转-迭代、递归
+ */
 public class ReverseList {
     public static void main(String[] args){
         ListNode list5 = new ListNode(5,null);

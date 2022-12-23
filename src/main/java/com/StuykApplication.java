@@ -18,7 +18,7 @@ public class StuykApplication {
         SpringApplication.run(StuykApplication.class, args);
     }
 
-//    //初始化，往Redisson 中初始化个redis 的连接
+    //初始化，往Redisson 中初始化个redis 的连接
 //    @Bean
 //    public Redisson redisson()  {
 //        //此为单机模式
@@ -26,7 +26,7 @@ public class StuykApplication {
 //        config.useSingleServer().setAddress("redis://127.0.0.1:6383").setDatabase(0);
 //        return (Redisson) Redisson.create(config);
 //    }
-//
+
 //    @Bean
 //    @ConditionalOnMissingBean(StringRedisTemplate.class)
 //    public StringRedisTemplate stringRedisTemplate(RedisConnectionFactory redisConnectionFactory){

@@ -1,5 +1,8 @@
 package com.study.leetCode;
 
+/**
+ * 获取素数个数-暴力算法、埃氏筛选
+ */
 public class Sushu {
 
     public static void main(String[] args){

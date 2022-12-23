@@ -6,7 +6,7 @@ import com.api.core.inter.TransBaseReqDto;
 import com.api.core.inter.TransRspDto;
 import com.api.modules.dto.PaymentReq;
 import com.api.modules.dto.PaymentRsp;
-import com.api.modules.service.RedisService;
+import com.api.common.util.RedisService;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -32,7 +32,7 @@ public class SentinelTest extends Acction {
 //        Student s = new Student();
 //        s.setId("001");
 //        s.setName("chhliu");
-//        s.setGrade("一年级");
+//        s.setGrade("一锟疥级");
 //        s.setAge("28");
 //        service.set(s);
 
